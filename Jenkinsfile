@@ -39,26 +39,6 @@ vm_tomcat
                     
                     // Simulation du fichier WAR pour éviter l'erreur de copie
                     sh "touch ${params.WAR_FILE}"
-
-                    // CORRECTION 2 : On écrit le vrai contenu du playbook au lieu d'un fichier vide
-                    def playbookContent = """---
-- hosts: "{{ target_env }}"
-  become: yes
-  tasks:
-    - name: Test de connexion basique (Ping)
-      ping:
-      
-    - name: Créer le répertoire de backup s'il n'existe pas
-      file:
-        path: /opt/tomcat/backups
-        state: directory
-        mode: '0755'
-        
-    - name: Simulation de déploiement
-      debug:
-        msg: "Déploiement de {{ war_file }} terminé !"
-"""
-                    writeFile file: 'deploy-war.yml', text: playbookContent
                 }
             }
         }
