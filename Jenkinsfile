@@ -26,10 +26,10 @@ pipeline {
                     // CORRECTION 1 : Utilisation de env.IP_CIBLE1 et env.IP_TOMCAT
                     def inventoryContent = """
 [cible1]
-${env.IP_CIBLE1} ansible_user=deploy ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/id_rsa
+${env.IP_CIBLE1} 
 
 [vm_tomcat]
-${env.IP_TOMCAT} ansible_user=tomcat ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/id_rsa
+${env.IP_TOMCAT} 
 
 [all:children]
 cible1
@@ -93,10 +93,10 @@ vm_tomcat
             sh 'rm -f inventory.ini deploy-war.yml ${WAR_FILE}'
         }
         success {
-            echo "✅ SUCCÈS : L'application a été déployée avec succès !"
+            echo "SUCCÈS : L'application a été déployée avec succès !"
         }
         failure {
-            echo "❌ ÉCHEC : Le déploiement a échoué."
+            echo "ÉCHEC : Le déploiement a échoué."
         }
     }
 }
